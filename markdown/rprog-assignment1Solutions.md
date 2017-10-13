@@ -15,7 +15,7 @@ Please note that the `pollutantmean()` function outline I discuss in [Breaking D
 
 # What does an "elegant" R program look like?
 
-I suggest that there are at least two key characteristics of an elegant R program, including:
+I suggest that there are at least three key characteristics of an elegant R program, including:
 
 1. Code that implements core R concepts (i.e. functional programming) in a minimum number of programming statements (that is, parsimonious code), and<br><br>
 2. Code that runs efficiently: requiring a minimum amount of resources, and <br><br>
@@ -82,7 +82,7 @@ As expected, the response time for `pollutantmean()` is much closer to that of `
 </tr>
 </table>
 
-Note that the one line versions of `pollutantmean()`, `complete()` and `corr()` were definitely not my original versions of these programs. My first attempts used `for()` loops because I had background in other programming languages where `for()` loops weren't as inefficient as they are in R, and I was following the advice I give in [Strategy for the Programming Assignments](http://bit.ly/2ddFh9A), where I share the old programming aphorism "make it work, make it right, make it fast".
+Note that the one line versions of `pollutantmean()`, `complete()` and `corr()` were definitely not my original versions of these programs. My first attempts used `for()` loops because I had background in other programming languages where memory allocation within a `for()` loop isn't as inefficient as it is in R, and I was following the advice I give in [Strategy for the Programming Assignments](http://bit.ly/2ddFh9A), where I share the old programming aphorism "make it work, make it right, make it fast".
 
 My original solution of `pollutantmean()` covered "make it work" and "make it right," because it produced the correct results, a weighted mean of non-missing cases for all sensor files that are specified by the `id` argument passed to the function. As I developed more skill with R, I was able to refactor the code into functions that perform well, use R more as it is intended, and with fewer overall programming statements.
 
@@ -109,9 +109,9 @@ All performance timings were run on an Apple Macbook Pro 13 with the following s
      </tr>
 </table>
 
-## Appendix 2: Additional Articles that Measure R performance
+## Appendix 2: Additional Resources Regarding R performance
 
-For additional background on the measurement of R performance, please review the following articles.
+For additional background on the measurement of R performance, please review the following resources.
 
 - [Advanced R: Performance](http://bit.ly/2mi67mV) The *Performance* chapter from Hadley Wickham's book, *Advanced R*, which explains techniques for measuring and improving the perfrmance of an R program. <br><br>
 - [Course Project - Improving Runtime Performance of Random Forest Models with caret::train()](http://bit.ly/2bYtutG) Explains how the choice of parameters and use of multithreading can improve the performance of `caret::train()` by 58% on a machine with a fast processor.<br><br>

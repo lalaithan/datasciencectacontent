@@ -36,4 +36,27 @@ is the same as
     # rightward form
     15 -> x
 
-Note that the `=` form of the assignment operator is leftward form, and that it has other restrictions on its use. Therefore, most people who work in R prefer `<-` over `=`.
+Note that the `=` form of the assignment operator is leftward form only, and that it has other restrictions on its use: `=` is only allowed at the top level (e.g., in the complete expression typed at the command prompt), or within a subexpression within a braced list of expressions.
+
+Therefore, most people who work in R prefer `<-` over `=`.
+
+# Appendix
+
+This section contains questions and answers about topics related to the assignment operator.
+
+**Question:** why must I use `<<-` to assign a value to an object in a parent environment? 
+
+**Answer:** The `<-` form of the assignment operator will create a new object that is local to a function rather than traversing the environment tree to find whether there is an object of the same name in a parent scope. Therefore, one must use `<<-` to assign a value to an object in a parent scope.
+
+We'll illustrate the point with the following code. Notice how `anObject` in the parent environment retains its original value after `sampleFunction()` is executed.
+
+     anObject <- "original value"
+     sampleFunction <- function() {
+          # use local form of assignment operator
+          anObject <- "new value"
+          message(paste("anObject value is:", anObject))
+     }
+     sampleFunction()
+     anObject
+
+<img src="./images/rprog-assignmentOperator01.png">
