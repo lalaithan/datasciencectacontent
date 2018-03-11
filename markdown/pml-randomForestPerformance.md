@@ -62,7 +62,7 @@ Parallel processing in `caret` can be accomplished with the `parallel` and `doPa
 The most critical arguments for the trainControl function are the resampling method `method`, the `number` that specifies the quantity of folds for k-fold cross-validation, and `allowParallel` which tells caret to use the cluster that we've registered in the previous step.
 
     fitControl <- trainControl(method = "cv",
-                               number = 10,
+                               number = 5,
                                allowParallel = TRUE)
 
 ### Step 3: Develop training model
@@ -73,7 +73,7 @@ Next, we use `caret::train()` to train the model, using the `trainControl()` obj
 
 ### Step 4: De-register parallel processing cluster
 
-After processing the data, we explicitly shut down the cluster by calling the `stopCluster()` and `registerDoSEQ()` functions. `registerDoSEQ()` function is required to force R to return to single threaded processing.
+After processing the data, we explicitly shut down the cluster by calling the `stopCluster()` and `registerDoSEQ()` functions. The `registerDoSEQ()` function is required to force R to return to single threaded processing.
 
     stopCluster(cluster)
     registerDoSEQ()
@@ -198,4 +198,4 @@ Hardware specifications for the computers used in the performance timings in thi
 </tr>
 </table>
 
-*last updated: 9 July 2017*
+*last updated: 12 November 2017*

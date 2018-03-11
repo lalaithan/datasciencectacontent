@@ -132,7 +132,10 @@ Installing Crouton and loading Ubuntu Linux is multi-step process.
 5. If you would prefer to run the Unity desktop, which is the standard for Ubuntu Linux but takes up more space than xfce, run the following command:
 
        sudo sh -e ~/Downloads/crouton -t unity
-<img src="./images/misc-rOnChromebook03.png"> <br><br>**NOTE:** the name of the new environment defaults to the version of the operating system being installed. For the default install of Ubuntu Linux, the current production version is named `xenial`. This is important if you need to uninstall the image at a later point.
+
+<img src="./images/misc-rOnChromebook03.png"> <br><br>
+
+**NOTE:** the name of the new environment defaults to the version of the operating system being installed. For the default install of Ubuntu Linux, the current production version is named `xenial`. This is important if you need to uninstall the image at a later point.
 
 6. If you're installing Linux on a device that has a touchscreen, such as the Chromebook Pixel or the HP Chromebook 11 G5 EE, enter the following to install touch support with the xfce desktop:
 
@@ -158,7 +161,7 @@ If you've installed Unity, the desktop will look similar to this.
 
 ### Optimize Linux Desktop for Chromebook  
 
-Once installed, one can switch back and forth between Chrome OS and Ubuntu by pressing the following keys: `<CNTL>+<ALT>+<Shift>+<Backward>` and `<CNTL>+<ALT>+<Shift>+<Forward>`. Note that some hardware uses `<CNTL>+<ALT>+<Backward>` and `<CNTL>+<ALT>+<Forward>` so you may have to check the documentation for your Chromebook to confirm which version of these keystrokes is correct for your hardware. 
+Once installed, one can switch back and forth between Chrome OS and Ubuntu by pressing the following keys: `<CNTL>+<ALT>+<Shift>+<Backward>` and `<CNTL>+<ALT>+<Shift>+<Forward>`. Note that some hardware uses `<CNTL>+<ALT>+<Backward>` and `<CNTL>+<ALT>+<Forward>` so you may have to check the documentation for your Chromebook to confirm which version of these keystrokes is correct for your hardware.
 
 For example, Whitson Gordon's article says that Intel machines use `<CNTL>+<ALT>+<Backward>` and `<CNTL>+<ALT>+<Forward>`, but my Chromebook has an Intel processor yet the commands that work correctly on my machine are `<CNTL>+<ALT>+<Shift>+<Backward>` and `<CNTL>+<ALT>+<Shift>+<Forward>`.
 
@@ -199,7 +202,7 @@ At this point we will install a couple of applications that make the rest of the
 
 Chromium is the open source browser on which Google Chrome is based. The [Chromium version excludes a number of proprietary software extensions](https://askubuntu.com/questions/6253/whats-the-difference-between-google-chrome-and-or-chromium-what-are-the-advant) such as Adobe Flash that are included in Google's version. To install Chromium, open a Linux terminal and enter the following command.
 
-      sudo apt-get install chromium  
+      sudo apt-get install chromium-browser  
 
 ### Install the [Atom](http://atom.io) text editor
 
@@ -251,6 +254,14 @@ The output should match the following image.
 
 <img src="./images/misc-rOnChromebook08.png">
 
+## Install libxml2 Library
+
+`libxml2` is required to for R to compile the Google Sheets package. To install it, enter the following commands from the command shell.
+
+     apt-cache search libxml2
+     sudo apt-get install libxml2-dev
+
+
 
 # Step 3: Install R and RStudio
 
@@ -275,13 +286,18 @@ The R installation will take 15 - 30 minutes depending on the speed of your mach
 
 ## Install RStudio
 
-Since we're installing most of our software through the terminal window instead of the Ubuntu Software Center or the Synaptic Package Manager, we'll use the following commands to install RStudio.
+### Alternative 1: install from command line
+Since we're installing most of our software through the terminal window instead of the Ubuntu Software Center or the Synaptic Package Manager, we'll use the following commands to install RStudio. As of summer 2017, the version of RStudio was 0.99.896. Before running these commands, check the [RStudio website](http://bit.ly/2hEYW4q) to obtain the current version number.
 
         sudo apt-get install gdebi-core
         wget https://download1.rstudio.org/rstudio-0.99.896-amd64.deb
         sudo gdebi -n rstudio-0.99.896-amd64.deb
 
 **NOTE:** Once RStudio is installed, we will need to run it with administrator privileges in order to install packages in the correct folders within the operating system.
+
+### Alternative 2: download and install from custom Installer
+
+Since the time of the original writing of this article RStudio created an install package for Ubuntu. The install package for Ubuntu 9+ can be downloaded from the [RStudio download page](http://bit.ly/2hEYW4q). Once downloaded, double click on the package and the Ubuntu Software Center will install the software on the computer.
 
 ## Test the Installation
 
@@ -319,7 +335,7 @@ To load a package once it's been downloaded, we use the `library()` function.
 
 # Step 5: Register for Github and Connect with Local Git
 
-This step is optional, but recommended. It enables you to store your R programs and data on Github, in case your Chromebook is lost, damaged, or stolen. There is an entire set of videos about configuring git and Githb from Data School: [Data School Github Video Series](https://www.youtube.com/playlist?list=PL5-da3qGB5IBLMp7LtN8Nc3Efd4hJq0kD). We'll leave it to you to sign up for Github. 
+This step is optional, but recommended. It enables you to store your R programs and data on Github, in case your Chromebook is lost, damaged, or stolen. There is an entire set of videos about configuring git and Github from Data School: [Data School Github Video Series](https://www.youtube.com/playlist?list=PL5-da3qGB5IBLMp7LtN8Nc3Efd4hJq0kD). We'll leave it to you to sign up for Github.
 
 ## Create an apStats Repository on Github
 
@@ -383,7 +399,7 @@ From a boot of the Chromebook, the steps to run RStudio include:
 
 ### Size of Problems One Can Solve
 
-R processes everything in the [random access memory](https://en.wikipedia.org/wiki/Random-access_memory) (RAM) of the computer. Since Chromebooks typically have between 2Gb and 4Gb of RAM, an R installation on a Chromebook will be limited to data sets that consume less than the memory installed on your Chromebook. One can conduct very sophisticated analyses on a machine with 2Gb of RAM, such as the analysis of extreme weather events data from the National Oceanographic and Atmospheric Administration that is used as the final project in the Johns Hopkins University [Reproducible Research](https://www.coursera.org/learn/reproducible-research) course on [Coursera](http://coursera.org). The raw data file for this project consumes about 540Mb of RAM once it is loaded into R.
+R processes everything in the [random access memory](https://en.wikipedia.org/wiki/Random-access_memory) (RAM) of the computer. Since Chromebooks typically have between 2Gb and 4Gb of RAM, an R installation on a Chromebook will be limited to data sets that consume less than the memory installed on your Chromebook. One can conduct very sophisticated analyses on a machine with 2Gb of RAM, such as the analysis of [extreme weather events](http://bit.ly/2xoJraj) data from the [United States National Oceanographic and Atmospheric Administration](http://bit.ly/2zcZ0Qf) that is used as the final project in the Johns Hopkins University [Reproducible Research](https://www.coursera.org/learn/reproducible-research) course on [Coursera](http://coursera.org). The raw data file for this project consumes about 540Mb of RAM once it is loaded into R.
 
 Since it is unlikely that students in an AP Statistics course will analyze data sets larger than the NOAA storm data, the Chromebook has more than enough capacity to handle any problem that is covered in a high school statistics course.
 
@@ -513,3 +529,5 @@ We've now demonstrated that our installation of RStudio will produce graphics.
 [Installing R on Ubuntu Linux 16.04](https://www.r-bloggers.com/how-to-install-r-on-linux-ubuntu-16-04-xenial-xerus/)
 
 [crouton Wiki](https://github.com/dnschneid/crouton/wiki)
+
+*Last update: 6 January 2018*
